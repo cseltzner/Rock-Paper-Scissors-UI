@@ -1,17 +1,78 @@
-html {
-    background-color: honeydew;
+* {
+    margin: 0px;
+    padding: 0px;
 }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+html {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-image: linear-gradient(#C1C8E4, #5AB9EA );
+
+}
+
 
 #header {
     text-align: center;
+    border: 2px solid rgb(6, 6, 70);
+    padding: 1em;
+    margin: 1em;
+    background-image: linear-gradient(#5680E9, #8860D0);
+    color: white;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black; /*black text border*/
+}
+
+#instruction-container {
+    display: flex;
+    justify-content: center;
+    margin: 1em;
+    text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white; /*black text border*/
+    font-size: 2.5em;
+}
+
+#score-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white; /*black text border*/
+    font-size: 2.4em;
+}
+
+ul {
+    list-style: none;
 }
 
 #button-container {
     display: flex;
     justify-content: center;
     gap: 1em;
+    margin: 2em;
 }
 
 #button-container button {
-    padding: 10px;
+    padding: 3em;
+    border-radius: 30%;
+    border: 2px black solid;
+    background-color: hsl(180, 36%, 96%) ;
+}
+
+#footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3em;
+    color: white;
+    background-color: indigo;
+    border-top: 2px solid #121d38;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black; /*black text border*/
+
 }
