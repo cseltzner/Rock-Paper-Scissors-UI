@@ -6,57 +6,46 @@
 // funct playRound(): takes args from player input and computer input, decides who wins, sends back to main if playing again
 // Note: 0=rock, 1=paper, 2=scissors: 0>2, 1>0, 2>1
 
+// UI requirements ->
+// 3 r/p/s buttons, event listener sends to correct selection
+// add div for displaying results
+// Add display for running score, announce winner best of 5
+// Holy heck this is some F'd up spaghetti. I'm gonna make some spaghetti and prob never look at this again...
+
 
 // Program start ->
 intro();
+playerInput();
 
 // Function definitions ->
 function intro() {
-    alert('Welcome to Chase\'s Rock Paper Scissors Bonanza.');
-    start();
+    // Creates intro text and displays it
+    let introDiv = document.createElement('h1');
+    introDiv.textContent = "Welcome to Chase\'s Rock Paper Scissors Bonanza";
+    introDiv.style.textAlign = 'center';
+
+    let headerContainer = document.querySelector('#header');
+    headerContainer.appendChild(introDiv);
+
 }
 
-function start() {
-    let playerAnswer = playerInput();
-    let computerAnswer = computerInput();
-    playRound(playerAnswer, computerAnswer);
-}
-
+// Starts game on player input
 function playerInput() {
-    let correctAns = ['r', 'rock', 'p', 'paper', 's', 'scissors'];
-
-    let playerAns = prompt('(r)ock, (p)aper, or (s)cissors? Type q to quit');
-
-    // Ends game if player types 'Q'. Probably want to get rid of this if I add GUI*
-    if (playerAns.toLowerCase() == 'q' || playerAns.toLowerCase() == 'quit') {
-        alert('Goodbye!');
-        throw new Error('Game end');
-    }
-
-    // Checks if playerAns is in correctAns array. If player answers a correctAns, playerInputCorrect is true and can move on. Could probably do this with an object.property but discovered that later in the project
-    let playerInputCorrect = false;
-    for (let i =0; i < correctAns.length; i++) {
-        if (playerAns.toLowerCase() == correctAns[i]) {
-            playerInputCorrect = true;
-        }
-    }
-
-    if (playerInputCorrect == false) {
-        alert('Invalid response, please try again');
-        start();
-    }
-
-    // Returns player answer (r/p/s) as string
-    else if (playerInputCorrect == true) {
-        return playerAns;
-    }
-
-    //Error 101
-    else {
-        alert('Error 101: I have no idea how you got this error');
-        console.log('Error 101');
-    }
+    let compAns = computerInput();
+    document.getElementById('rock').addEventListener('click', () => {
+        playerAns = 'r';
+        playRound(playerAns, compAns);
+    });
+    document.getElementById('paper').addEventListener('click', () => {
+        playerAns = 'p';
+        playRound(playerAns, compAns);
+    });
+    document.getElementById('scissors').addEventListener('click', () => {
+        playerAns = 's';
+        playRound(playerAns, compAns);
+    });
 }
+
 
 function computerInput() {
     // Computer picks random value between 0 and 2, then returns answer
@@ -120,14 +109,19 @@ function losingMessage(computerAns, answerDict) {
 }
 
 function winningMessage(computerAns, answerDict) {
-    alert(`You Win!!! The robot chose ${answerDict[computerAns]}`);
-}
+    let winningContainer = document.querySelector('#header');
+    let winningMessage = document.createElement('h2');
+    winningMessage.textContent = `You Win!!! The robot chose ${answerDict[computerAns]}`;
+    winningContainer.appendChild(winningMessage);
+    }
+
+
 
 // Asks to play again, if yes return to start()
 function again() {
     let playAgain = prompt('Would you like to play again? y/n');
     if (playAgain.toLowerCase() == 'y' || playAgain.toLowerCase() == 'yes') {
-        start();
+        playerInput();
     }
 
     else if (playAgain.toLowerCase() == 'n' || playAgain.toLowerCase() == 'no') {

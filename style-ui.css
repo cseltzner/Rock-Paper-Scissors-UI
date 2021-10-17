@@ -1,0 +1,17 @@
+html {
+    background-color: honeydew;
+}
+
+#header {
+    text-align: center;
+}
+
+#button-container {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}
+
+#button-container button {
+    padding: 10px;
+}
